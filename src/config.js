@@ -3,6 +3,12 @@ export const BRAND = {
   name: 'NOIRVAL',
 };
 
+// Where the contact form posts. Paste a form-service URL (e.g. https://formspree.io/f/xxxxxx)
+// to receive enquiries; while empty, the form says plainly that nothing was sent.
+export const CONTACT = {
+  endpoint: '',
+};
+
 // Path-traced hero fly-through (rendered in Blender Cycles).
 export const HERO = {
   frames: 100,

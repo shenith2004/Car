@@ -42,7 +42,7 @@ A workflow is included at `.github/workflows/deploy.yml`.
 - **Brand name**: `src/config.js` (`BRAND.name`). Every `[data-brand]` element updates. Also change the `<title>`/meta tags in `index.html` and the logo mark (`<symbol id="mark">`).
 - **Copy, builds, and process steps**: plain HTML in `index.html`.
 - **Paint and wheel options in the studio**: the `data-paint` / `data-rim` buttons in `index.html`.
-- **Contact form**: currently validates and shows a confirmation on the page, but sends nothing. To receive enquiries, point it at a form backend such as Formspree, Netlify Forms, or your own API in `src/main.js` (`[data-contact-form]` handler).
+- **Contact form**: validates on the page. To receive enquiries, paste a form-service endpoint (Formspree, Getform, or your own API) into `CONTACT.endpoint` in `src/config.js`. Until you do, the form tells visitors plainly that nothing was sent.
 
 ## Project structure
 

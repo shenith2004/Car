@@ -6,7 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 
-import { BRAND, HERO, TRAIL } from './config.js';
+import { BRAND, CONTACT, HERO, TRAIL } from './config.js';
 import { FrameSequence } from './modules/hero-sequence.js';
 import { ImageTrail } from './modules/image-trail.js';
 import { initCursor } from './modules/cursor.js';
@@ -391,7 +391,7 @@ gsap.fromTo(
 /* ---------------------------------------------------------- contact form */
 const form = $('[data-contact-form]');
 const status = $('[data-form-status]');
-form?.addEventListener('submit', (e) => {
+form?.addEventListener('submit', async (e) => {
   e.preventDefault();
   let ok = true;
   $$('[required]', form).forEach((f) => {
@@ -403,9 +403,22 @@ form?.addEventListener('submit', (e) => {
     status.textContent = 'Please complete the highlighted fields.';
     return;
   }
-  const name = (new FormData(form).get('name') || '').toString().split(' ')[0];
-  status.textContent = `Thank you${name ? ', ' + name : ''} — our atelier will be in touch within 48 hours.`;
-  form.reset();
+  const data = new FormData(form);
+  const name = (data.get('name') || '').toString().split(' ')[0];
+  const hi = name ? `, ${name}` : '';
+  if (!CONTACT.endpoint) {
+    status.textContent = `Thanks${hi}. This form isn't connected to an inbox yet, so nothing was sent.`;
+    return;
+  }
+  status.textContent = 'Sending…';
+  try {
+    const res = await fetch(CONTACT.endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+    if (!res.ok) throw new Error(String(res.status));
+    status.textContent = `Thank you${hi}. Our atelier will be in touch within 48 hours.`;
+    form.reset();
+  } catch {
+    status.textContent = "Your enquiry couldn't be sent. Check your connection and try again.";
+  }
 });
 
 /* ------------------------------------------------------------ main loop */
