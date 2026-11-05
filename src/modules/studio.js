@@ -294,61 +294,72 @@ export function createStudio({ section, canvas, stage }) {
   loader.setDRACOLoader(draco);
 
   let car = null;
-  loader.load(
-    asset('models/car.glb'),
-    (gltf) => {
-      car = gltf.scene;
-      car.updateMatrixWorld(true);
-      // De-badge: remove the small emblem triangles (grille, nose, tail) so the build reads as unbranded.
-      const chrome = car.getObjectByName('chrome');
-      if (chrome) {
-        removeTriangles(chrome, [
-          new THREE.Box3(new THREE.Vector3(-0.05, 0.2, -2.25), new THREE.Vector3(0.05, 0.66, -2.0)),
-          new THREE.Box3(new THREE.Vector3(-0.05, 0.58, 2.0), new THREE.Vector3(0.05, 1.02, 2.25)),
-        ]);
-      }
-      const shields = car.getObjectByName('yellow_trim');
-      if (shields) shields.visible = false;
-      car.traverse((o) => {
-        if (!o.isMesh) return;
-        const name = o.material && o.material.name;
-        if (byMaterialName[name]) o.material = byMaterialName[name];
-        if (/^rim_/.test(o.name)) o.material = M.rim;
-        o.castShadow = false;
-        o.receiveShadow = false;
-      });
-      // contact shadow (baked AO) under the car
-      const ao = new THREE.TextureLoader().load(asset('models/car_ao.png'));
-      ao.colorSpace = THREE.SRGBColorSpace;
-      const shadow = new THREE.Mesh(
-        new THREE.PlaneGeometry(0.655 * 4, 1.3 * 4),
-        new THREE.MeshBasicMaterial({
-          map: ao,
-          blending: THREE.MultiplyBlending,
-          toneMapped: false,
-          transparent: true,
-          premultipliedAlpha: true,
-          depthWrite: false,
-        }),
-      );
-      shadow.rotation.x = -Math.PI / 2;
-      shadow.position.y = 0.002;
-      shadow.renderOrder = 2;
-      car.add(shadow);
-      scene.add(car);
-      state.ready = true;
-      section.classList.add('is-ready');
-      draco.dispose();
-      playIntro();
-    },
-    (xhr) => {
-      if (xhr.total && loadingEl) loadingEl.style.setProperty('--p', (xhr.loaded / xhr.total).toFixed(3));
-    },
-    (err) => {
-      console.error('Studio model failed to load', err);
-      if (loadingEl) loadingEl.querySelector('span').textContent = 'The studio could not be loaded';
-    },
-  );
+  const onLoad = (gltf) => {
+    car = gltf.scene;
+    car.updateMatrixWorld(true);
+    // De-badge: remove the small emblem triangles (grille, nose, tail) so the build reads as unbranded.
+    const chrome = car.getObjectByName('chrome');
+    if (chrome) {
+      removeTriangles(chrome, [
+        new THREE.Box3(new THREE.Vector3(-0.05, 0.2, -2.25), new THREE.Vector3(0.05, 0.66, -2.0)),
+        new THREE.Box3(new THREE.Vector3(-0.05, 0.58, 2.0), new THREE.Vector3(0.05, 1.02, 2.25)),
+      ]);
+    }
+    const shields = car.getObjectByName('yellow_trim');
+    if (shields) shields.visible = false;
+    car.traverse((o) => {
+      if (!o.isMesh) return;
+      const name = o.material && o.material.name;
+      if (byMaterialName[name]) o.material = byMaterialName[name];
+      if (/^rim_/.test(o.name)) o.material = M.rim;
+      o.castShadow = false;
+      o.receiveShadow = false;
+    });
+    // contact shadow (baked AO) under the car
+    const ao = new THREE.TextureLoader().load(asset('models/car_ao.png'));
+    ao.colorSpace = THREE.SRGBColorSpace;
+    const shadow = new THREE.Mesh(
+      new THREE.PlaneGeometry(0.655 * 4, 1.3 * 4),
+      new THREE.MeshBasicMaterial({
+        map: ao,
+        blending: THREE.MultiplyBlending,
+        toneMapped: false,
+        transparent: true,
+        premultipliedAlpha: true,
+        depthWrite: false,
+      }),
+    );
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.y = 0.002;
+    shadow.renderOrder = 2;
+    car.add(shadow);
+    scene.add(car);
+    state.ready = true;
+    section.classList.add('is-ready');
+    draco.dispose();
+    playIntro();
+  };
+  const onProgress = (xhr) => {
+    if (xhr.total && loadingEl) loadingEl.style.setProperty('--p', (xhr.loaded / xhr.total).toFixed(3));
+  };
+  const onError = (err) => {
+    console.error('Studio model failed to load', err);
+    if (loadingEl) loadingEl.querySelector('span').textContent = 'The studio could not be loaded';
+  };
+
+  if (import.meta.env.MODE === 'artifact') {
+    // Artifact hosting does not serve .glb files, so that build ships the model as a base64 JS module.
+    import(/* @vite-ignore */ new URL('models/car-glb.js', document.baseURI).href)
+      .then((mod) => {
+        const bin = atob(mod.default);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        loader.parse(bytes.buffer, '', onLoad, onError);
+      })
+      .catch(onError);
+  } else {
+    loader.load(asset('models/car.glb'), onLoad, onProgress, onError);
+  }
 
   /* ----------------------------------------------------------- resize */
   const resize = () => {
