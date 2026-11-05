@@ -52,7 +52,7 @@ def add_bump(nt, bsdf, scale=300.0, strength=0.08, detail=2.0, kind='noise', soc
     return bump
 
 
-def thin_glass(name, tint=(0.3, 0.32, 0.33, 1), rough=0.0, ior_fac=0.06):
+def thin_glass(name, tint=(0.3, 0.32, 0.33, 1), rough=0.0, ior_fac=0.06, gloss=1.0):
     """Fast 'thin' glass: transparent + glossy mixed by fresnel (no refraction noise)."""
     mat = bpy.data.materials.new(name)
     try:
@@ -68,7 +68,7 @@ def thin_glass(name, tint=(0.3, 0.32, 0.33, 1), rough=0.0, ior_fac=0.06):
     tr.inputs['Color'].default_value = tint
     gl = nt.nodes.new('ShaderNodeBsdfGlossy')
     gl.inputs['Roughness'].default_value = rough
-    gl.inputs['Color'].default_value = (1, 1, 1, 1)
+    gl.inputs['Color'].default_value = (gloss, gloss, gloss, 1)
     lw = nt.nodes.new('ShaderNodeLayerWeight')
     lw.inputs['Blend'].default_value = 0.12
     # fresnel-ish: more reflection at grazing angles, minimum base reflection
@@ -118,7 +118,8 @@ def paint(name, rgb, rough=0.32, metallic=0.0, flake=False):
 M['paint_red'] = paint('paint_red', (0.42, 0.0015, 0.0012), rough=0.3)
 M['paint_black'] = paint('paint_black', (0.006, 0.006, 0.007), rough=0.28)
 
-M['glass'] = thin_glass('glass_tint', tint=(0.2, 0.21, 0.22, 1), ior_fac=0.035)
+# windscreen reflects only ~10%: otherwise it mirrors the overhead softbox as a white blob
+M['glass'] = thin_glass('glass_tint', tint=(0.2, 0.21, 0.22, 1), ior_fac=0.035, gloss=0.1)
 M['lens'] = thin_glass('lens_clear', tint=(0.92, 0.92, 0.92, 1), ior_fac=0.04)
 M['led'] = emission('led_white', (0.85, 0.92, 1.0, 1), 32.0)
 
