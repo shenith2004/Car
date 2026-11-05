@@ -218,7 +218,8 @@ export function createStudio({ section, canvas, stage }) {
       transmission: 1,
       ior: 1.5,
       thickness: 0,
-      envMapIntensity: 0.7,
+      specularIntensity: 0.35, // grazing reflections of the overhead softbox otherwise bloom into a streak
+      envMapIntensity: 0.5,
     }),
     lens: new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: 0, transmission: 1, ior: 1.5 }),
     led: new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: new THREE.Color('#e4f0ff'), emissiveIntensity: 4.5 }),
@@ -266,7 +267,7 @@ export function createStudio({ section, canvas, stage }) {
   });
   const composer = new EffectComposer(renderer, composerTarget);
   composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.42, 0.5, 0.96);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), 0.45, 0.5, 1.6); // only the LEDs (emissive 4.5) bloom
   composer.addPass(bloom);
   composer.addPass(new OutputPass());
 
@@ -415,7 +416,7 @@ export function createStudio({ section, canvas, stage }) {
 
   const VIEWS = {
     front: new THREE.Vector3(0.0, 1.0, -6.6),
-    side: new THREE.Vector3(6.9, 0.95, 0.0),
+    side: new THREE.Vector3(8.0, 0.95, 0.0),
     rear: new THREE.Vector3(-0.6, 1.15, 6.6),
     top: new THREE.Vector3(0.4, 7.4, -1.0),
   };
