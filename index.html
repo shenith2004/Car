@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NOIRVAL — Bespoke Automotive Atelier</title>
+    <meta
+      name="description"
+      content="NOIRVAL is a luxury automotive atelier for bespoke styling, performance and craftsmanship. We don't modify vehicles — we build them for you."
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta property="og:title" content="NOIRVAL — Bespoke Automotive Atelier" />
+    <meta property="og:description" content="For those who refuse ordinary. Bespoke styling, performance and craftsmanship." />
+    <meta property="og:image" content="./media/og.jpg" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preload" as="image" href="./media/hero/desktop/f_001.webp" fetchpriority="high" />
+  </head>
+  <body class="is-loading">
+    <!-- Preloader -->
+    <div class="preloader" data-preloader aria-hidden="true">
+      <div class="preloader__inner">
+        <svg class="preloader__mark" viewBox="0 0 40 24" aria-hidden="true"><use href="#mark" /></svg>
+        <div class="preloader__word" data-brand>NOIRVAL</div>
+        <div class="preloader__bar"><span data-preloader-bar></span></div>
+        <div class="preloader__count"><span data-preloader-count>000</span></div>
+      </div>
+    </div>
+
+    <!-- SVG sprite -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="mark" viewBox="0 0 40 24">
+        <path d="M20 2 L37 21 L31.2 21 L20 8.6 L8.8 21 L3 21 Z" fill="currentColor" />
+        <path d="M14.6 21 L20 15 L25.4 21 Z" fill="currentColor" />
+      </symbol>
+    </svg>
+
+    <!-- Viewport bezel frame -->
+    <div class="frame" aria-hidden="true"><div class="frame__inner"></div></div>
+
+    <!-- Film grain -->
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Custom cursor -->
+    <div class="cursor" data-cursor aria-hidden="true">
+      <div class="cursor__ring"><span class="cursor__label" data-cursor-label></span></div>
+      <div class="cursor__dot"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="nav" data-nav>
+      <nav class="nav__left" aria-label="Primary">
+        <a href="#about" class="nav__link" data-scroll-to data-magnetic>About</a>
+        <a href="#builds" class="nav__link" data-scroll-to data-magnetic>Builds</a>
+        <a href="#process" class="nav__link" data-scroll-to data-magnetic>Process</a>
+      </nav>
+      <button class="nav__menu" data-menu-toggle aria-expanded="false" aria-controls="menu">
+        <span class="nav__menu-lines"><i></i><i></i></span><span class="nav__menu-text">Menu</span>
+      </button>
+      <a href="#top" class="nav__logo" data-scroll-to aria-label="NOIRVAL home">
+        <svg class="nav__mark" viewBox="0 0 40 24" aria-hidden="true"><use href="#mark" /></svg>
+        <span class="nav__word" data-brand>NOIRVAL</span>
+      </a>
+      <a href="#contact" class="nav__cta" data-scroll-to data-magnetic>
+        <span class="nav__cta-full">Get in touch</span><span class="nav__cta-short">Contact</span><i class="nav__cta-line"></i>
+      </a>
+    </header>
+
+    <!-- Mobile menu -->
+    <div class="menu" id="menu" data-menu aria-hidden="true">
+      <nav class="menu__links">
+        <a href="#about" data-scroll-to><span>01</span>About</a>
+        <a href="#builds" data-scroll-to><span>02</span>Builds</a>
+        <a href="#studio" data-scroll-to><span>03</span>Studio</a>
+        <a href="#process" data-scroll-to><span>04</span>Process</a>
+        <a href="#contact" data-scroll-to><span>05</span>Contact</a>
+      </nav>
+      <p class="menu__foot small-caps">Bespoke · Performance · Craft</p>
+    </div>
+
+    <!-- Fixed bottom bar -->
+    <div class="hud" aria-hidden="true">
+      <div class="hud__left">
+        <div class="hud__progress"><span data-progress></span></div>
+        <span class="hud__copy small-caps" data-hud-fade>© <span data-year>2026</span> <span data-brand>NOIRVAL</span> Atelier</span>
+      </div>
+      <div class="hud__right small-caps" data-hud-fade>
+        <span>Bespoke</span><span>Performance</span><span>Craft</span>
+      </div>
+    </div>
+
+    <main id="top">
+      <!-- ============================== HERO ============================== -->
+      <section class="hero" data-hero>
+        <div class="hero__sticky">
+          <canvas class="hero__canvas" data-hero-canvas></canvas>
+          <div class="hero__shaft" data-hero-shaft></div>
+          <div class="hero__vignette"></div>
+          <h1 class="hero__title" data-hero-title aria-label="For Those Who Refuse Ordinary">
+            <span class="line">For Those Who</span>
+            <span class="line">Refuse Ordinary</span>
+          </h1>
+          <div class="hero__tagline" data-hero-tagline>
+            <p class="small-caps">A luxury automotive atelier for bespoke <br />styling, performance and craftsmanship</p>
+            <i class="hero__tagline-line"></i>
+          </div>
+          <div class="hero__scroll small-caps" data-hero-scroll><span>Scroll</span><i></i></div>
+          <div class="hero__blackout" data-hero-blackout></div>
+        </div>
+      </section>
+
+      <!-- ============================ MANIFESTO =========================== -->
+      <section class="manifesto" id="about" data-manifesto>
+        <div class="manifesto__sticky">
+          <div class="manifesto__trail" data-trail aria-hidden="true"></div>
+          <h2 class="manifesto__title" data-blur-text aria-label="We Don’t Modify Vehicles. We Build Them For You.">
+            <span class="line">We Don’t Modify Vehicles</span>
+            <span class="line">We Build Them For You</span>
+          </h2>
+          <p class="manifesto__hint small-caps" data-trail-hint>Move to explore the craft</p>
+        </div>
+      </section>
+
+      <!-- ============================= APPROACH =========================== -->
+      <section class="approach" id="approach" data-approach>
+        <div class="approach__sticky">
+        <div class="approach__media" data-approach-media>
+          <img
+            src="./media/approach/stitch.webp"
+            srcset="./media/approach/stitch-mobile.webp 1000w, ./media/approach/stitch.webp 2000w"
+            sizes="(max-width: 760px) 100vw, 70vw"
+            alt="Macro of hand-stitched black leather with red thread"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="approach__content">
+          <div class="approach__head">
+            <h2 class="approach__title" data-reveal-lines>
+              <span class="line"><span>Our Approach</span></span>
+              <span class="line"><span>To Every Build</span></span>
+            </h2>
+            <svg class="approach__arc" viewBox="0 0 60 300" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="arcGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fff" stop-opacity="0" />
+                  <stop offset="0.25" stop-color="#fff" stop-opacity="0.9" />
+                  <stop offset="0.7" stop-color="#e0182d" stop-opacity="0.9" />
+                  <stop offset="1" stop-color="#e0182d" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <path d="M4 0 C 70 90, 70 210, 4 300" fill="none" stroke="url(#arcGrad)" stroke-width="1.4" data-arc />
+            </svg>
+          </div>
+          <p class="approach__text" data-fade-up>
+            Every decision is intentional, every detail has purpose — based on your taste, your lifestyle and your
+            standards.
+          </p>
+          <ul class="approach__marques" data-marques aria-label="Marques we have built on">
+            <li>
+              <svg viewBox="0 0 120 40" aria-label="Triad"><g fill="none" stroke="currentColor" stroke-width="3.2"><circle cx="34" cy="20" r="14"/><circle cx="60" cy="20" r="14"/><circle cx="86" cy="20" r="14"/></g></svg>
+            </li>
+            <li>
+              <svg viewBox="0 0 120 40" aria-label="Aerion">
+                <g fill="currentColor">
+                  <path d="M6 15 C 26 13, 40 15, 50 20 C 40 22, 26 25, 12 24 C 22 22, 30 21, 36 20 C 26 19, 16 18, 6 15Z" />
+                  <path d="M114 15 C 94 13, 80 15, 70 20 C 80 22, 94 25, 108 24 C 98 22, 90 21, 84 20 C 94 19, 104 18, 114 15Z" />
+                </g>
+                <circle cx="60" cy="20" r="9.5" fill="none" stroke="currentColor" stroke-width="2.2" />
+                <path d="M57 15.5 v9 M63 15.5 v9" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </li>
+            <li class="approach__wordmark">AVELLINE</li>
+            <li>
+              <svg viewBox="0 0 40 44" aria-label="Crest">
+                <path d="M20 3 L35 8 V20 C35 30, 28 37, 20 41 C12 37, 5 30, 5 20 V8 Z" fill="none" stroke="currentColor" stroke-width="2.4" />
+                <path d="M13 14 L20 22 L27 14 M20 22 V32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+              </svg>
+            </li>
+            <li>
+              <svg viewBox="0 0 90 40" aria-label="Marlowe">
+                <ellipse cx="45" cy="20" rx="42" ry="17" fill="none" stroke="currentColor" stroke-width="2" />
+                <text x="45" y="18" text-anchor="middle" font-size="9" letter-spacing="1.5" fill="currentColor" font-family="Instrument Serif, serif">MARLOWE</text>
+                <text x="45" y="28" text-anchor="middle" font-size="6.5" letter-spacing="2" fill="currentColor" font-family="Inter Variable, sans-serif">COACHWORKS</text>
+              </svg>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </section>
+
+      <!-- ============================== BUILDS ============================ -->
+      <section class="builds" id="builds" data-builds>
+        <div class="builds__pin" data-builds-pin>
+          <header class="section-head builds__head">
+            <p class="small-caps section-head__label"><span>02</span> Selected Builds</p>
+            <h2 class="section-head__title" data-reveal-lines>
+              <span class="line"><span>Commissions That</span></span>
+              <span class="line"><span>Never Repeat</span></span>
+            </h2>
+          </header>
+          <div class="builds__track" data-builds-track>
+            <article class="build" data-cursor-text="View">
+              <div class="build__media"><img src="./media/builds/rosso.webp" alt="Rosso Noirval build — red coupé in a dark studio" loading="lazy" decoding="async" /></div>
+              <div class="build__meta">
+                <span class="small-caps">N°01 — 2026</span>
+                <h3>Rosso Ardente</h3>
+                <p class="small-caps">Carbon aero · 640 hp · Hand-stitched cabin</p>
+              </div>
+            </article>
+            <article class="build" data-cursor-text="View">
+              <div class="build__media"><img src="./media/builds/nero.webp" alt="Nero Obsidian build — gloss black coupé with gunmetal wheels" loading="lazy" decoding="async" /></div>
+              <div class="build__meta">
+                <span class="small-caps">N°02 — 2026</span>
+                <h3>Nero Obsidian</h3>
+                <p class="small-caps">Stealth programme · 612 hp · Alcantara</p>
+              </div>
+            </article>
+            <article class="build" data-cursor-text="View">
+              <div class="build__media"><img src="./media/builds/bianco.webp" alt="Bianco Artico build — pearl white coupé" loading="lazy" decoding="async" /></div>
+              <div class="build__meta">
+                <span class="small-caps">N°03 — 2025</span>
+                <h3>Bianco Artico</h3>
+                <p class="small-caps">Pearl tri-coat · 598 hp · Ivory leather</p>
+              </div>
+            </article>
+            <article class="build" data-cursor-text="View">
+              <div class="build__media"><img src="./media/builds/verde.webp" alt="Verde Notte build — deep green coupé" loading="lazy" decoding="async" /></div>
+              <div class="build__meta">
+                <span class="small-caps">N°04 — 2025</span>
+                <h3>Verde Notte</h3>
+                <p class="small-caps">Heritage livery · 620 hp · Tan saddle</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================== STUDIO (real-time 3D) ============= -->
+      <section class="studio" id="studio" data-studio>
+        <div class="studio__stage" data-studio-stage>
+          <canvas class="studio__canvas" data-studio-canvas></canvas>
+          <div class="studio__loading small-caps" data-studio-loading><span>Preparing the studio</span><i></i></div>
+        </div>
+        <div class="studio__ui">
+          <header class="studio__head">
+            <p class="small-caps section-head__label"><span>03</span> The Studio</p>
+            <h2 class="studio__title" data-reveal-lines>
+              <span class="line"><span>Configure It</span></span>
+              <span class="line"><span>In Real Time</span></span>
+            </h2>
+            <p class="studio__sub">A physically based, real-time model of your future build. Drag to orbit, choose a finish, change the view.</p>
+          </header>
+
+          <div class="studio__panel" data-studio-panel>
+            <div class="studio__group">
+              <p class="small-caps studio__label">Paint — <span data-paint-name>Rosso Ardente</span></p>
+              <div class="studio__swatches" role="radiogroup" aria-label="Paint">
+                <button class="swatch is-active" role="radio" aria-checked="true" data-paint="#a00000" data-paint-label="Rosso Ardente" style="--c: #b3000a" aria-label="Rosso Ardente"></button>
+                <button class="swatch" role="radio" aria-checked="false" data-paint="#050505" data-paint-label="Nero Obsidian" style="--c: #111" aria-label="Nero Obsidian"></button>
+                <button class="swatch" role="radio" aria-checked="false" data-paint="#d8d8d2" data-paint-label="Bianco Artico" style="--c: #e9e9e3" aria-label="Bianco Artico"></button>
+                <button class="swatch" role="radio" aria-checked="false" data-paint="#0b2a1c" data-paint-label="Verde Notte" style="--c: #123b28" aria-label="Verde Notte"></button>
+                <button class="swatch" role="radio" aria-checked="false" data-paint="#0a1a3a" data-paint-label="Blu Abisso" style="--c: #14285a" aria-label="Blu Abisso"></button>
+                <button class="swatch" role="radio" aria-checked="false" data-paint="#5a5f63" data-paint-label="Grigio Titanio" style="--c: #6d7377" aria-label="Grigio Titanio"></button>
+              </div>
+            </div>
+            <div class="studio__group">
+              <p class="small-caps studio__label">Wheels — <span data-rim-name>Gunmetal</span></p>
+              <div class="studio__chips" role="radiogroup" aria-label="Wheel finish">
+                <button class="chip is-active" role="radio" aria-checked="true" data-rim="#6b6e73" data-rim-metal="1" data-rim-rough="0.3">Gunmetal</button>
+                <button class="chip" role="radio" aria-checked="false" data-rim="#151515" data-rim-metal="0.5" data-rim-rough="0.42">Satin Black</button>
+                <button class="chip" role="radio" aria-checked="false" data-rim="#a07a42" data-rim-metal="1" data-rim-rough="0.3">Bronze</button>
+                <button class="chip" role="radio" aria-checked="false" data-rim="#d9d9d9" data-rim-metal="1" data-rim-rough="0.08">Polished</button>
+              </div>
+            </div>
+            <div class="studio__group studio__group--row">
+              <div>
+                <p class="small-caps studio__label">View</p>
+                <div class="studio__chips">
+                  <button class="chip" data-view="front">Front</button>
+                  <button class="chip" data-view="side">Profile</button>
+                  <button class="chip" data-view="rear">Rear</button>
+                  <button class="chip" data-view="top">Above</button>
+                </div>
+              </div>
+              <div>
+                <p class="small-caps studio__label">Lights</p>
+                <div class="studio__chips">
+                  <button class="chip is-active" data-lights aria-pressed="true">On</button>
+                  <button class="chip" data-spin aria-pressed="true">Turntable</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="studio__hint small-caps"><i></i>Drag to explore</p>
+        </div>
+      </section>
+
+      <!-- ============================== PROCESS =========================== -->
+      <section class="process" id="process" data-process>
+        <header class="section-head process__head">
+          <p class="small-caps section-head__label"><span>04</span> Process</p>
+          <h2 class="section-head__title" data-reveal-lines>
+            <span class="line"><span>From First Sketch</span></span>
+            <span class="line"><span>To Final Signature</span></span>
+          </h2>
+        </header>
+        <div class="process__grid">
+          <div class="process__visual" data-process-visual>
+            <div class="process__frame">
+              <img src="./media/process/01-consult.webp" alt="Clay study of the car in a dark studio" data-step-img="0" class="is-active" loading="lazy" decoding="async" />
+              <img src="./media/process/02-engineer.webp" alt="Engineering wireframe of the car" data-step-img="1" loading="lazy" decoding="async" />
+              <img src="./media/process/03-craft.webp" alt="Hand-finished cabin with red leather details" data-step-img="2" loading="lazy" decoding="async" />
+              <img src="./media/process/04-deliver.webp" alt="The finished build revealed under a single spotlight" data-step-img="3" loading="lazy" decoding="async" />
+              <div class="process__counter small-caps"><span data-step-count>01</span> / 04</div>
+            </div>
+          </div>
+          <ol class="process__steps">
+            <li class="step" data-step="0">
+              <span class="step__num small-caps">01</span>
+              <h3 class="step__title">Consultation</h3>
+              <p class="step__text">We begin with you — how you drive, where you go, what moves you. A private session to define the character of the car before a single line is drawn.</p>
+              <p class="step__meta small-caps">2 – 3 weeks</p>
+            </li>
+            <li class="step" data-step="1">
+              <span class="step__num small-caps">02</span>
+              <h3 class="step__title">Design &amp; Engineering</h3>
+              <p class="step__text">Surfaces are sculpted digitally and validated in clay. Aero, chassis and powertrain are engineered as one system, simulated and refined to the millimetre.</p>
+              <p class="step__meta small-caps">8 – 12 weeks</p>
+            </li>
+            <li class="step" data-step="2">
+              <span class="step__num small-caps">03</span>
+              <h3 class="step__title">Craftsmanship</h3>
+              <p class="step__text">Carbon is laid by hand, leather is cut from single hides and stitched thread by thread. Every surface you touch is made for you, and only you.</p>
+              <p class="step__meta small-caps">1,200+ hours</p>
+            </li>
+            <li class="step" data-step="3">
+              <span class="step__num small-caps">04</span>
+              <h3 class="step__title">Delivery</h3>
+              <p class="step__text">Your build is unveiled in our atelier, then shaken down on track and road with our engineers. The final signature on the chassis plate is yours.</p>
+              <p class="step__meta small-caps">The beginning</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============================== STATS ============================= -->
+      <section class="stats" data-stats>
+        <div class="stat"><span class="stat__num" data-count="24">0</span><span class="small-caps">Builds per year</span></div>
+        <div class="stat"><span class="stat__num" data-count="1200" data-suffix="+">0</span><span class="small-caps">Hours per commission</span></div>
+        <div class="stat"><span class="stat__num" data-count="100" data-suffix="%">0</span><span class="small-caps">Bespoke, never repeated</span></div>
+      </section>
+
+      <!-- ============================== CONTACT =========================== -->
+      <section class="contact" id="contact" data-contact>
+        <div class="contact__intro">
+          <p class="small-caps section-head__label"><span>05</span> Get in touch</p>
+          <h2 class="contact__title" data-reveal-lines>
+            <span class="line"><span>Begin Your</span></span>
+            <span class="line"><span>Commission</span></span>
+          </h2>
+          <p class="contact__text">We accept a limited number of commissions each year. Tell us about the car you have in mind and our atelier will reach out personally.</p>
+          <ul class="contact__details small-caps">
+            <li><span>Visits</span>By appointment only</li>
+            <li><span>Hours</span>Monday — Saturday</li>
+            <li><span>Response</span>Within 48 hours</li>
+          </ul>
+        </div>
+        <form class="contact__form" data-contact-form novalidate>
+          <div class="field">
+            <input id="f-name" name="name" type="text" autocomplete="name" required placeholder=" " />
+            <label for="f-name">Full name</label>
+          </div>
+          <div class="field">
+            <input id="f-email" name="email" type="email" autocomplete="email" required placeholder=" " />
+            <label for="f-email">Email</label>
+          </div>
+          <div class="field">
+            <input id="f-car" name="vehicle" type="text" placeholder=" " />
+            <label for="f-car">Base vehicle (optional)</label>
+          </div>
+          <div class="field field--select">
+            <select id="f-type" name="type" required>
+              <option value="" selected disabled hidden></option>
+              <option>Full bespoke build</option>
+              <option>Styling &amp; aero programme</option>
+              <option>Performance programme</option>
+              <option>Interior &amp; trim</option>
+            </select>
+            <label for="f-type">Commission type</label>
+          </div>
+          <div class="field field--area">
+            <textarea id="f-msg" name="message" rows="4" placeholder=" "></textarea>
+            <label for="f-msg">Tell us about your vision</label>
+          </div>
+          <button class="btn" type="submit" data-magnetic data-cursor-text="Send">
+            <span class="btn__text">Send enquiry</span><i class="btn__line"></i>
+          </button>
+          <p class="contact__status small-caps" data-form-status role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- ============================== FOOTER ============================ -->
+      <footer class="footer">
+        <div class="footer__top">
+          <p class="footer__quote">“Ordinary was never an option.”</p>
+          <nav class="footer__links small-caps" aria-label="Footer">
+            <a href="#about" data-scroll-to>About</a>
+            <a href="#builds" data-scroll-to>Builds</a>
+            <a href="#studio" data-scroll-to>Studio</a>
+            <a href="#process" data-scroll-to>Process</a>
+            <a href="#contact" data-scroll-to>Contact</a>
+          </nav>
+        </div>
+        <div class="footer__word" data-footer-word><span data-brand>NOIRVAL</span></div>
+        <div class="footer__bottom small-caps">
+          <span>© <span data-year>2026</span> <span data-brand>NOIRVAL</span> Atelier</span>
+          <span class="footer__credit">
+            3D model: <a href="https://sketchfab.com/3d-models/ferrari-458-italia-57bf6cc56931426e87494f554df1dab6" target="_blank" rel="noopener">“Ferrari 458 Italia” by vicent091036</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> · Imagery path-traced in Blender Cycles
+          </span>
+          <a href="#top" data-scroll-to class="footer__top-link">Back to top ↑</a>
+        </div>
+      </footer>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
