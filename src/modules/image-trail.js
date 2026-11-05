@@ -86,7 +86,7 @@ export class ImageTrail {
     const w = img.offsetWidth || 110;
     const h = img.offsetHeight || 82;
     gsap.killTweensOf(img);
-    const rot = gsap.utils.random(-5, 5);
+    const rot = 0; // the reference keeps every frame square to the screen
     gsap.set(img, {
       x: fromX - w / 2,
       y: fromY - h / 2,

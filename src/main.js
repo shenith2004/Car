@@ -331,23 +331,28 @@ const studioIO = new IntersectionObserver(
   },
   { rootMargin: '120% 0px' },
 );
-studioIO.observe(studioSection);
+// `?nostudio` (dev only) skips the WebGL studio so automated layout checks stay fast.
+if (!(import.meta.env.DEV && location.search.includes('nostudio'))) studioIO.observe(studioSection);
 
 /* --------------------------------------------------------------- process */
 const stepImgs = $$('[data-step-img]');
 const stepCount = $('[data-step-count]');
-$$('[data-step]').forEach((step) => {
+const steps = $$('[data-step]');
+const activateStep = (step) => {
+  const i = Number(step.dataset.step);
+  steps.forEach((s) => s.classList.toggle('is-active', s === step));
+  stepImgs.forEach((img) => img.classList.toggle('is-active', Number(img.dataset.stepImg) === i));
+  stepCount.textContent = String(i + 1).padStart(2, '0');
+};
+steps.forEach((step, i) => {
   ScrollTrigger.create({
     trigger: step,
     start: 'top 62%',
     end: 'bottom 62%',
-    onToggle: (self) => {
-      if (!self.isActive) return;
-      const i = Number(step.dataset.step);
-      $$('[data-step]').forEach((s) => s.classList.toggle('is-active', s === step));
-      stepImgs.forEach((img) => img.classList.toggle('is-active', Number(img.dataset.stepImg) === i));
-      stepCount.textContent = String(i + 1).padStart(2, '0');
-    },
+    // onEnter/onEnterBack also fire when a fast scroll jumps over a step, so the last step always activates
+    onEnter: () => activateStep(step),
+    onEnterBack: () => activateStep(step),
+    onLeaveBack: () => i > 0 && activateStep(steps[i - 1]),
   });
 });
 $('[data-step="0"]')?.classList.add('is-active');
@@ -379,10 +384,9 @@ gsap.fromTo(
     yPercent: 0,
     opacity: 1,
     ease: 'power2.out',
-    scrollTrigger: { trigger: '[data-footer-word]', start: 'top bottom', end: 'bottom 85%', scrub: 0.8 },
+    scrollTrigger: { trigger: '[data-footer-word]', start: 'top bottom', end: 'bottom bottom', scrub: 0.8 },
   },
 );
-gsap.set('[data-footer-word] span', { display: 'inline-block' });
 
 /* ---------------------------------------------------------- contact form */
 const form = $('[data-contact-form]');

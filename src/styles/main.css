@@ -786,6 +786,13 @@ ol {
   height: 100%;
   object-fit: cover;
   object-position: 62% 50%;
+  animation: drift 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes drift {
+  0% { transform: scale(1.02) translate3d(0, 0, 0); }
+  100% { transform: scale(1.09) translate3d(-1.6%, -1.2%, 0); }
 }
 
 .approach__media::after {
@@ -1546,12 +1553,18 @@ ol {
   line-height: 0.8;
   letter-spacing: -0.02em;
   text-align: center;
-  background: linear-gradient(180deg, #f1efea 0%, #f1efea 30%, rgba(241, 239, 234, 0.08) 100%);
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* the gradient lives on the (transformed) span so background-clip:text still paints */
+.footer__word span {
+  display: inline-block;
+  padding-bottom: 0.06em;
+  background: linear-gradient(180deg, #f1efea 0%, #f1efea 32%, rgba(241, 239, 234, 0.06) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  user-select: none;
-  white-space: nowrap;
 }
 
 .footer__bottom {
@@ -1852,7 +1865,8 @@ ol {
   }
 
   .hero__scroll i::after,
-  .studio__hint i::after {
+  .studio__hint i::after,
+  .approach__media img {
     animation: none;
   }
 }
