@@ -271,7 +271,13 @@ export function createStudio({ section, canvas, stage }) {
   composer.addPass(new OutputPass());
 
   /* ------------------------------------------------------------- load */
-  const state = { spin: true, lights: true, ready: false, visible: false };
+  const state = { spin: true, lights: true, ready: false, visible: false, intro: false };
+  // Camera glides in the first time the loaded studio is actually on screen.
+  function playIntro() {
+    if (state.intro || !state.ready || !state.visible) return;
+    state.intro = true;
+    gsap.from(camera.position, { x: 7.4, y: 2.4, z: -7.6, duration: 2.6, ease: 'expo.out', onUpdate: () => controls.update() });
+  }
   const loadingEl = section.querySelector('[data-studio-loading]');
   const draco = new DRACOLoader(); // decoder files are bundled by Vite via import.meta.url
   // Strict Content-Security-Policies can forbid WebAssembly; fall back to the pure-JS decoder there.
@@ -332,8 +338,7 @@ export function createStudio({ section, canvas, stage }) {
       state.ready = true;
       section.classList.add('is-ready');
       draco.dispose();
-      // intro move
-      gsap.from(camera.position, { x: 7.4, y: 2.4, z: -7.6, duration: 2.6, ease: 'expo.out', onUpdate: () => controls.update() });
+      playIntro();
     },
     (xhr) => {
       if (xhr.total && loadingEl) loadingEl.style.setProperty('--p', (xhr.loaded / xhr.total).toFixed(3));
@@ -468,6 +473,7 @@ export function createStudio({ section, canvas, stage }) {
   const io = new IntersectionObserver(
     ([entry]) => {
       state.visible = entry.isIntersecting;
+      playIntro();
     },
     { rootMargin: '10% 0px' },
   );
